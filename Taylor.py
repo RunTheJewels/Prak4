@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 
 def f(x):
-	return np.sin(x)
+	return np.cos(x)*x+1.43*np.log(x)
 
 def taylor(f=f,x0=0,x1=1,n=100,a=0.5,power=10):
 	if ((a>=x1) or (a<=x0)):
 		raise Exception("a must between x0 and x1!")
-	vector = np.vectorize(f)
-	xs = np.linspace(x0,x1,n,endpoint=True)
+	vector=np.vectorize(f)
+	xs=np.linspace(x0,x1,n,endpoint=True)
 	der=np.zeros((power+1))
 	der[0]=f(a)
 	for i in xrange(1,power+1):
