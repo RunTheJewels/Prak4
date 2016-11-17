@@ -29,7 +29,7 @@ def h(x):
 		return 1
 
 def g(x):
-	return np.exp(x)
+	return np.cos(x)
 
 def mult(a,b):
 	return a*b
@@ -44,14 +44,12 @@ def fourier(f=f,x0=0.0,x1=1.0,n=100,steps=20):
 	a[0]=1.0/mid*simps(ys,x=xs)/2.0
 	tmp=np.empty([n])
 	for i in xrange(1,steps+1):
-		print zip(map(lambda q: np.sin(i*q),xs),ys)
 		for j in xrange(0,n):
 			tmp[j]=np.sin(xs[j]*i)*ys[j]
 		b[i]=1.0/mid*simps(tmp,x=xs)
 		for j in xrange(0,n):
 			tmp[j]=np.cos(xs[j]*i)*ys[j]
 		a[i]=1.0/mid*simps(tmp,x=xs)
-	print a,b
 	solution=np.empty([steps+1,n])
 	solution.fill(a[0])
 	for i in xrange(1,steps+1):
@@ -67,4 +65,4 @@ def fourier(f=f,x0=0.0,x1=1.0,n=100,steps=20):
 	anm = ani.FuncAnimation(fig, _graph_animate, frames=steps+1, interval=100, repeat=False)
 	plt.show()
 
-fourier(f=h,x0=-4.5,x1=4.5,n=101)
+fourier(f=g,x0=-4.5,x1=4.5,n=101)
